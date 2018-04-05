@@ -1,0 +1,60 @@
+group 'MyJForex'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {url "https://www.dukascopy.com/client/jforexlib/publicrepo"}
+    flatDir {dirs "C:/jforex/source/files/"}
+}
+
+
+
+dependencies {
+    compile 'com.dukascopy.api:JForex-API:2.13.47'
+    testCompile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
+
+}
+
+jar {
+    baseName = 'MyCustomJForexLibrary'
+    version = '1.0'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+
+}
+
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+            exclude '**/uncompilable/**'
+        }
+    }
+}
+
+task copyJarToAnotherDirectory(type: Copy) {
+    from "build/libs"
+    into "C:/jforex/source/files/"
+
+}
+jar.finalizedBy(copyJarToAnotherDirectory)
+
+task copyJarToAnotherMavenProject(type: Copy) {
+    from "build/libs"
+    into "C:/Users/Victor/Downloads/JForex-3-SDK/rc"
+}
+copyJarToAnotherDirectory.finalizedBy(copyJarToAnotherMavenProject)
+
+/*
+
+task copyUncompilableToAnotherDirectory(type: Copy) {
+    from "src/main/java/uncompilable"
+    into "C:/jforex/source/"
+}
+copyJarToAnotherDirectory.finalizedBy(copyUncompilableToAnotherDirectory)
+*/
