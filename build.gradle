@@ -14,7 +14,7 @@ repositories {
 
 
 dependencies {
-    compile 'com.dukascopy.api:JForex-API:2.13.47'
+    compile 'com.dukascopy.api:JForex-API:2.13.56'
     testCompile 'junit:junit:4.12'
     compile 'junit:junit:4.12'
 
