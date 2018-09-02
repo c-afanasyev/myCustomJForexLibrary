@@ -40,7 +40,6 @@ public abstract class AbstractOpenChartsAndPlotTextLabels {
 
     public void openAndPlot(){
         String stringNameOfInstrument;
-        double priceForTextPlotting;
 
         //subscribe instruments
         Set<Instrument> setOfInstruments = new HashSet<>();
@@ -49,7 +48,6 @@ public abstract class AbstractOpenChartsAndPlotTextLabels {
                     NameOfJForexInstrumentSwitch.getNameOfJForexInstrument(month)));
         }
         context.setSubscribedInstruments(setOfInstruments, true);
-
 
         //Open charts and plot textLabels on each
         for (int i = 0; i < arrayOfCharts.length; i++) {
@@ -64,20 +62,9 @@ public abstract class AbstractOpenChartsAndPlotTextLabels {
                             Period.DAILY,
                             OfferSide.BID));
 
-            //determine the price which will used as a parameter for
-            //plotting textLabel on a chart
-            priceForTextPlotting = textPlotter.getPriceForTextPlotting(
-                    context,
-                    Instrument.fromString(stringNameOfInstrument),
-                    time);
-
-            //plot textLabel on chart
-            textPlotter.plotText(arrayOfMonths[i],
-                    arrayOfCharts[i],
-                    time,
-                    priceForTextPlotting);
+            //plot label on chart
+            textPlotter.plotText(arrayOfMonths[i], arrayOfCharts[i]);
         }
-
     }
 
     protected abstract String[] initialiseArrayOfMonths(int year);
