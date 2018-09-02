@@ -13,10 +13,10 @@ public final class LightAndBrentOpenChartsAndPlotTextLabels extends AbstractOpen
         String yearToString;
         String [] arrayOfMonths = {"QCLF", "QCLG", "QCLH", "QCLJ", "QCLK", "QCLM",
                                    "QCLN", "QCLQ", "QCLU", "QCLV", "QCLX", "QCLZ",
-                                   "EBF", "EBF", "EBG", "EBG", "EBH", "EBH",
-                                   "EBJ", "EBJ", "EBK", "EBK", "EBM", "EBM",
-                                   "EBN", "EBN", "EBQ", "EBQ", "EBU", "EBU",
-                                   "EBV", "EBV", "EBX", "EBX", "EBZ", "EBZ"};
+                                   "EBF", "EBG", "EBH",
+                                   "EBJ", "EBK", "EBM",
+                                   "EBN", "EBQ", "EBU",
+                                   "EBV", "EBX", "EBZ"};
 
         if (year != 2000)
             yearToString = String.valueOf(year-2000);
@@ -27,7 +27,7 @@ public final class LightAndBrentOpenChartsAndPlotTextLabels extends AbstractOpen
         for (int i = 0; i < arrayOfMonths.length; i++) {arrayOfMonths[i] += yearToString;}
 
         //add postfix "_minus5" to an every second Brent symbol
-        for (int i = 13; i < arrayOfMonths.length; i += 2) {arrayOfMonths[i] += "_minus5";}
+        //for (int i = 13; i < arrayOfMonths.length; i += 2) {arrayOfMonths[i] += "_minus5";}
 
         return arrayOfMonths;
     }
